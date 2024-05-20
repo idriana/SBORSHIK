@@ -1,0 +1,91 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:SBORSHIK.ViewModels"
+			 xmlns:views="clr-namespace:SBORSHIK.Views"
+             mc:Ignorable="d" d:DesignWidth="546" d:DesignHeight="800"
+             x:Class="SBORSHIK.Views.MainView"
+             x:DataType="vm:MainViewModel"
+			 >
+	<DockPanel>
+		<Grid ColumnDefinitions="*" RowDefinitions="188, 94, 47, 188, 47, 47, *" Margin="38, 21, 38, 21">
+			<DockPanel Grid.Row="0" Grid.Column="0">
+				<Grid ColumnDefinitions="98, *, 85" RowDefinitions="*, *, *, *">
+					<!--1 row-->
+					<TextBlock VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0" TextElement.FontSize="16"> MKVToolNix</TextBlock>
+					<TextBox Text="{Binding MKVToolNixFile}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="5, 0, 0, 0"> </TextBox>
+					<Button Command= "{Binding OpenSingleFileDialogCommand}" CommandParameter="MKVToolNixFile" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" TextElement.FontSize="14" IsEnabled="{Binding ButtonsEnabled, Mode=OneWay}"> Обзор </Button>
+					<!--2 row-->
+					<TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"> Видеофайл</TextBlock>
+					<TextBox Text="{Binding VideoFile}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5, 0, 0, 0"></TextBox>
+					<Button Command= "{Binding OpenSingleFileDialogCommand}" CommandParameter="VideoFile" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" HorizontalContentAlignment="Center" IsEnabled="{Binding ButtonsEnabled, Mode=OneWay}"> Обзор </Button>
+					<!--3 row-->
+					<TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right"> Ориг. аудио</TextBlock>
+					<TextBox Text="{Binding SourceAudioFile}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5, 0, 0, 0"></TextBox>
+					<Button Command= "{Binding OpenSingleFileDialogCommand}" CommandParameter="SourceAudioFile" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" HorizontalContentAlignment="Center" IsEnabled="{Binding ButtonsEnabled, Mode=OneWay}"> Обзор </Button>
+					<!--4 row-->
+					<TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right"> Наше аудио</TextBlock>
+					<TextBox Text="{Binding NewAudioFile}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="5, 0, 0, 0"> </TextBox>
+					<Button Command= "{Binding OpenSingleFileDialogCommand}" CommandParameter="NewAudioFile" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" HorizontalContentAlignment="Center" IsEnabled="{Binding ButtonsEnabled, Mode=OneWay}"> Обзор </Button>
+				</Grid>
+			</DockPanel>
+			
+			<DockPanel Grid.Row="1" Grid.Column="0">
+				<Grid ColumnDefinitions="141, *, *, 85" RowDefinitions="*, *" Grid.Row="1" Grid.Column="0">
+					<!--5 row-->
+					<TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" TextElement.FontSize="16"> Название студии</TextBlock>
+					<TextBox Text="{Binding StudioName}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="5, 0, 0, 0"> </TextBox>
+					<!--6 row-->
+					<TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"> Язык оригинала</TextBlock>
+					<TextBox Text="{Binding SourceLanguage}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5, 0, 0, 0"> </TextBox>
+				</Grid >
+			</DockPanel>
+			<DockPanel Grid.Row="2" Grid.Column="0">
+				<Grid ColumnDefinitions="37, *" RowDefinitions="*">
+					<!--7 row-->
+					<CheckBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" IsChecked="{Binding Subtitles}"> </CheckBox>
+					<TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3, 1, 0, 0"> Сабы</TextBlock>
+				</Grid>
+			</DockPanel>
+			<DockPanel Grid.Row="3" Grid.Column="0" IsEnabled="{Binding Subtitles}">
+				<Grid ColumnDefinitions="103, *, *, 85" RowDefinitions="*, *, *, *">
+					<!--8 row-->
+					<TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right"> Субтитры</TextBlock>
+					<TextBox Text="{Binding SubtitlesFile}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0"> </TextBox>
+					<Button Command= "{Binding OpenSingleFileDialogCommand}" CommandParameter="SubtitlesFile" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" HorizontalContentAlignment="Center" IsEnabled="{Binding ButtonsEnabled, Mode=OneWay}"> Обзор </Button>
+					<!--9 row--> 
+					<TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"> Надписи </TextBlock>
+					<TextBox Text="{Binding InsctiptionFile}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0"> </TextBox>
+					<Button Command= "{Binding OpenSingleFileDialogCommand}" CommandParameter="InsctiptionFile" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" HorizontalContentAlignment="Center" IsEnabled="{Binding ButtonsEnabled, Mode=OneWay}"> Обзор</Button>
+					<!--10 row-->
+					<TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right"> Перевод </TextBlock>
+					<TextBox Text="{Binding Translation}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5, 0, 0, 0"> </TextBox>
+					<!--11 row-->
+					<TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right"> Шрифты </TextBlock>
+					<TextBox Text="{Binding FontsFile}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0"> </TextBox>
+					<Button Command= "{Binding OpenMiltipleFilesDialogCommand}" CommandParameter="FontsFile" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Right" HorizontalContentAlignment="Center" IsEnabled="{Binding ButtonsEnabled, Mode=OneWay}"> Обзор </Button>
+				</Grid>
+			</DockPanel>
+			<DockPanel Grid.Row="4" Grid.Column="0">
+				<Grid ColumnDefinitions="103, *, *, 85" RowDefinitions="*">
+					<!--12 row-->
+					<TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right"> Вывод </TextBlock>
+					<TextBox Text="{Binding OutputFile}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5, 0, 0, 0"> </TextBox>
+					<Button  Command= "{Binding SaveFileDialogCommand}" CommandParameter="OutputFile" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" HorizontalContentAlignment="Center" IsEnabled="{Binding ButtonsEnabled, Mode=OneWay}"> Обзор </Button>
+				</Grid>
+			</DockPanel>
+			<!--13 row-->
+			<Button Grid.Row="5" Grid.Column="0"
+				HorizontalAlignment="Center"
+				HorizontalContentAlignment="Center"
+				VerticalAlignment="Center"
+				Command= "{Binding CompileCommand}">
+				Старт
+			</Button>
+			<DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="6" Grid.Column="0">
+				<TextBox Text="{Binding Logs}" VerticalAlignment="Stretch" IsReadOnly="True" AcceptsReturn="True" IsHitTestVisible="True"> </TextBox>
+			</DockPanel>
+		</Grid>
+	</DockPanel>
+</UserControl>

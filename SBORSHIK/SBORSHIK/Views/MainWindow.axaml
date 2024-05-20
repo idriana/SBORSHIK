@@ -1,0 +1,161 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:SBORSHIK.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:SBORSHIK.Views"
+        mc:Ignorable="d" d:DesignWidth="546" d:DesignHeight="698"
+        x:Class="SBORSHIK.Views.MainWindow"
+        Icon="/Assets/ico64.ico"
+        Title="SBORSHIK"
+		Background="#160909"
+		Focusable="True">
+        <views:MainView />
+	<Window.Resources>
+		<FontFamily x:Key="RobotoFont"> Assets\Roboto-Bold.ttf </FontFamily>
+		<!--This is very, VERY dumb way to change the color of elements when focused-->
+		<!--However nothing else worked, dynamic resource is overriding any style I've tried-->
+		<!--So I override dynamic resources with static ones...-->
+		<SolidColorBrush x:Key="TextControlBackgroundFocused">#451717</SolidColorBrush>
+		<SolidColorBrush x:Key="TextControlBorderBrushFocused">#451717</SolidColorBrush>
+		<SolidColorBrush x:Key="TextControlForegroundFocused">#FFFFFF</SolidColorBrush>
+		<SolidColorBrush x:Key="TextControlForegroundPointerOver">#FFFFFF</SolidColorBrush>
+	</Window.Resources>
+	<Window.Styles>
+		<!--textboxes-->
+		<Style Selector="TextBox[IsReadOnly=False]:pointerover /template/ Border#PART_BorderElement">
+			<Setter Property="Background" Value="#451717"/>
+		</Style>
+		<Style Selector="TextBox[IsReadOnly=True]:pointerover /template/ Border#PART_BorderElement">
+			<Setter Property="Background" Value="#350707"/>
+			<Setter Property="BorderThickness" Value="1" />
+			<Setter Property="BorderBrush" Value="Black"/>
+		</Style>
+		<Style Selector="Border:focus">
+			<Setter Property="BorderThickness" Value="4" />
+			<Setter Property="BorderBrush" Value="Red"/>
+			<Setter Property="CornerRadius" Value="4"/>
+		</Style>
+		<Style Selector="TextBox:not(:disabled)">
+			<Setter Property="Background" Value="#350707"/>
+			<Setter Property="TextElement.Foreground" Value="#FFFFFF"/>
+			<Setter Property="CornerRadius" Value="4"/>
+			<Setter Property="CaretBrush" Value="#FFFFFF"/>
+		</Style>
+		<Style Selector="TextBox:disabled">
+			<Setter Property="Background" Value="#350707"/>
+			<Setter Property="TextElement.Foreground" Value="Transparent"/>
+			<Setter Property="CornerRadius" Value="4"/>
+			<Setter Property="CaretBrush" Value="#FFFFFF"/>
+		</Style>
+		<!--buttons-->
+		<Style Selector="Button:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="#9D4141"/>
+			<Setter Property="TextElement.Foreground" Value="#FFFFFF"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontFamily" Value="RobotoBold"/>
+		</Style>
+		<Style Selector="Button:pressed /template/ ContentPresenter">
+			<Setter Property="Background" Value="#7D2121"/>
+			<Setter Property="TextElement.Foreground" Value="#FFFFFF"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontFamily" Value="RobotoBold"/>
+		</Style>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="#8D3131"/>
+			<Setter Property="TextElement.Foreground" Value="#FFFFFF"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontFamily" Value="RobotoBold"/>
+			<Setter Property="Width" Value="80"/>
+		</Style>
+		<Style Selector="Button:disabled /template/ ContentPresenter">
+			<Setter Property="Background" Value="#7D2121"/>
+			<Setter Property="TextElement.Foreground" Value="#A94E4E"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontFamily" Value="RobotoBold"/>
+		</Style>
+		<!--text blocks-->
+		<Style Selector="TextBlock">
+			<Setter Property="Margin" Value="8,0,0,0"/>
+			<Setter Property="TextElement.Foreground" Value="#FFFFFF"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontFamily" Value="RobotoBold"/>
+		</Style>
+		<Style Selector="TextBlock:disabled">
+			<Setter Property="Margin" Value="8,0,0,0"/>
+			<Setter Property="TextElement.Foreground" Value="#2B1B1B"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontFamily" Value="RobotoBold"/>
+		</Style>
+		<!--checkboxes-->
+		<Style Selector="CheckBox:checked">
+			<Setter Property="TextElement.Foreground" Value="#FFFFFF"/>
+			<Setter Property="TextElement.FontFamily" Value="RobotoBold"/>
+		</Style>
+		<Style Selector="CheckBox:unchecked">
+			<Setter Property="TextElement.Foreground" Value="#FFFFFF"/>
+			<Setter Property="TextElement.FontFamily" Value="RobotoBold"/>
+		</Style>
+		<Style Selector="CheckBox:pointerover /template/ ContentPresenter">
+			<Setter Property="TextElement.Foreground" Value="#FFFFFF"/>
+			<Setter Property="FontFamily" Value="RobotoBold"/>
+		</Style>
+		<Style Selector="CheckBox:pointerover:unchecked /template/ Border#NormalRectangle">
+			<!--works-->
+			<Setter Property="Width" Value="20"/>
+			<Setter Property="BorderBrush" Value="#250707"/>
+			<Setter Property="Background" Value="#451717"/>
+		</Style>
+		<Style Selector="CheckBox:pointerover:checked /template/ Border#NormalRectangle">
+			<!--works-->
+			<Setter Property="Width" Value="20"/>
+			<Setter Property="BorderBrush" Value="#250707"/>
+			<Setter Property="Background" Value="#BC5252"/>
+		</Style>
+		<Style Selector="CheckBox:checked:not(:pointerover) /template/ Border#NormalRectangle">
+			<!--works-->
+			<Setter Property="Width" Value="20"/>
+			<Setter Property="BorderBrush" Value="#250707"/>
+			<Setter Property="Background" Value="#AC4242"/>
+		</Style>
+		<Style Selector="CheckBox:unchecked:not(:pointerover) /template/ Border#NormalRectangle">
+			<!--works-->
+			<Setter Property="Width" Value="20"/>
+			<Setter Property="BorderBrush" Value="#250707"/>
+			<Setter Property="Background" Value="#350707"/>
+		</Style>
+		
+		<Style Selector="CheckBox:checked /template/ Path#CheckGlyph">
+			<Setter Property="Width" Value="11"/> <!--works-->
+			<Setter Property="Fill" Value="#FFFFFF"/>
+		</Style>
+
+		<Style Selector="DataValidationErrors">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<DockPanel LastChildFill="True">
+						<ContentControl DockPanel.Dock="Right"
+										ContentTemplate="{TemplateBinding ErrorTemplate}"
+										DataContext="{TemplateBinding Owner}"
+										Content=""
+										IsVisible="{Binding (DataValidationErrors.HasErrors)}"/>
+						<ContentPresenter Name="PART_ContentPresenter"
+										  Background="{TemplateBinding Background}"
+										  BorderBrush="{TemplateBinding BorderBrush}"
+										  BorderThickness="{TemplateBinding BorderThickness}"
+										  CornerRadius="{TemplateBinding CornerRadius}"
+										  ContentTemplate="{TemplateBinding ContentTemplate}"
+										  Content="{TemplateBinding Content}"
+										  Padding="{TemplateBinding Padding}"/>
+					</DockPanel>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+	</Window.Styles>
+</Window>

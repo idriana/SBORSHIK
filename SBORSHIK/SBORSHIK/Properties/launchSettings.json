@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SBORSHIK": {
+      "commandName": "Project",
+      "commandLineArgs": "/utf-8"
+    }
+  }
+}
